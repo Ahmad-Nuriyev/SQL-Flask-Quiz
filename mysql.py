@@ -1,4 +1,5 @@
 import pymysql
+import requests
 
 connection = pymysql.connect(
     host = "127.0.0.1",
@@ -12,7 +13,7 @@ connection = pymysql.connect(
 
 
 def create_table():
-    with connection:
+    # with connection:
         with connection.cursor() as cursor:
             sql = """ create table if not exists Testing.Movie_info(
                         id int auto_increment primary key,
@@ -22,6 +23,10 @@ def create_table():
                         genre varchar(50)
                         );"""
             cursor.execute(sql)
-        connection.commit()
+        # connection.commit()
 
-create_table()
+# create_table()
+
+
+data = requests.get ('https://www.omdbapi.com/?t=Inception&apikey=5d9df2b8')
+
